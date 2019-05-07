@@ -1,0 +1,102 @@
+{
+    "type": "object",
+    "properties": {
+        "parent": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The request to create a new role.",
+            "properties": {
+                "role": {
+                    "description": "The Role resource to create.",
+                    "properties": {
+                        "deleted": {
+                            "description": "The current deleted state of the role. This field is read only.\nIt will be ignored in calls to CreateRole and UpdateRole.",
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "description": "Optional.  A human-readable description for the role.",
+                            "type": "string"
+                        },
+                        "etag": {
+                            "description": "Used to perform a consistent read-modify-write.",
+                            "format": "byte",
+                            "type": "string"
+                        },
+                        "includedPermissions": {
+                            "description": "The names of the permissions this role grants when bound in an IAM policy.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "name": {
+                            "description": "The name of the role.\n\nWhen Role is used in CreateRole, the role name must not be set.\n\nWhen Role is used in output and other input such as UpdateRole, the role\nname is the complete path, e.g., roles/logging.viewer for curated roles\nand organizations/{ORGANIZATION_ID}/roles/logging.viewer for custom roles.",
+                            "type": "string"
+                        },
+                        "stage": {
+                            "description": "The current launch stage of the role. If the `ALPHA` launch stage has been\nselected for a role, the `stage` field will not be included in the\nreturned definition for the role.",
+                            "enum": [
+                                "ALPHA",
+                                "BETA",
+                                "GA",
+                                "DEPRECATED",
+                                "DISABLED",
+                                "EAP"
+                            ],
+                            "type": "string"
+                        },
+                        "title": {
+                            "description": "Optional.  A human-readable title for the role.  Typically this\nis limited to 100 UTF-8 bytes.",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "roleId": {
+                    "description": "The role id to use for this role.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

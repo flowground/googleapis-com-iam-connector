@@ -1,0 +1,407 @@
+{
+    "title": "Identity and Access Management (IAM)",
+    "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
+    "docsUrl": "https://cloud.google.com/iam/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/iam/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://iam.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "iam_iamPolicies_lintPolicy": {
+            "main": "./lib/actions/iam_iamPolicies_lintPolicy.js",
+            "title": "Lints a Cloud IAM policy object or its sub fields. Currently supports\ngoogle.iam.v1.Policy, google.iam.v1.Binding and\ngoogle.iam.v1.Binding.condition.\n\nEach lint operation consists of multiple lint validation units.\nValidation units have the following properties:\n\n- Each unit inspects the input object in regard to a particular\n  linting aspect and issues a google.iam.admin.v1.LintResult\n  disclosing the result.\n- Domain of discourse of each unit can be either\n  google.iam.v1.Policy, google.iam.v1.Binding, or\n  google.iam.v1.Binding.condition depending on the purpose of the\n  validation.\n- A unit may require additional data (like the list of all possible\n  enumerable values of a particular attribute used in the policy instance)\n  which shall be provided by the caller. Refer to the comments of\n  google.iam.admin.v1.LintPolicyRequest.context for more details.\n\nThe set of applicable validation units is determined by the Cloud IAM\nserver and is not configurable.\n\nRegardless of any lint issues or their severities, successful calls to\n`lintPolicy` return an HTTP 200 OK status code.",
+            "description": "Lints a Cloud IAM policy object or its sub fields. Currently supports\ngoogle.iam.v1.Policy, google.iam.v1.Binding and\ngoogle.iam.v1.Binding.condition.\n\nEach lint operation consists of multiple lint validation units.\nValidation units have the following properties:\n\n- Each unit inspects the input object in regard to a particular\n  linting aspect and issues a google.iam.admin.v1.LintResult\n  disclosing the result.\n- Domain of discourse of each unit can be either\n  google.iam.v1.Policy, google.iam.v1.Binding, or\n  google.iam.v1.Binding.condition depending on the purpose of the\n  validation.\n- A unit may require additional data (like the list of all possible\n  enumerable values of a particular attribute used in the policy instance)\n  which shall be provided by the caller. Refer to the comments of\n  google.iam.admin.v1.LintPolicyRequest.context for more details.\n\nThe set of applicable validation units is determined by the Cloud IAM\nserver and is not configurable.\n\nRegardless of any lint issues or their severities, successful calls to\n`lintPolicy` return an HTTP 200 OK status code.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_iamPolicies_lintPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_iamPolicies_queryAuditableServices": {
+            "main": "./lib/actions/iam_iamPolicies_queryAuditableServices.js",
+            "title": "Returns a list of services that support service level audit logging\nconfiguration for the given resource.",
+            "description": "Returns a list of services that support service level audit logging\nconfiguration for the given resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_iamPolicies_queryAuditableServices.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_permissions_queryTestablePermissions": {
+            "main": "./lib/actions/iam_permissions_queryTestablePermissions.js",
+            "title": "Lists the permissions testable on a resource.\nA permission is testable if it can be tested for an identity on a resource.",
+            "description": "Lists the permissions testable on a resource.\nA permission is testable if it can be tested for an identity on a resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_permissions_queryTestablePermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_roles_list": {
+            "main": "./lib/actions/iam_roles_list.js",
+            "title": "Lists the Roles defined on a resource.",
+            "description": "Lists the Roles defined on a resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_roles_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_roles_queryGrantableRoles": {
+            "main": "./lib/actions/iam_roles_queryGrantableRoles.js",
+            "title": "Queries roles that can be granted on a particular resource.\nA role is grantable if it can be used as the role in a binding for a policy\nfor that resource.",
+            "description": "Queries roles that can be granted on a particular resource.\nA role is grantable if it can be used as the role in a binding for a policy\nfor that resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_roles_queryGrantableRoles.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_roles_delete": {
+            "main": "./lib/actions/iam_projects_roles_delete.js",
+            "title": "Soft deletes a role. The role is suspended and cannot be used to create new\nIAM Policy Bindings.\nThe Role will not be included in `ListRoles()` unless `show_deleted` is set\nin the `ListRolesRequest`. The Role contains the deleted boolean set.\nExisting Bindings remains, but are inactive. The Role can be undeleted\nwithin 7 days. After 7 days the Role is deleted and all Bindings associated\nwith the role are removed.",
+            "description": "Soft deletes a role. The role is suspended and cannot be used to create new\nIAM Policy Bindings.\nThe Role will not be included in `ListRoles()` unless `show_deleted` is set\nin the `ListRolesRequest`. The Role contains the deleted boolean set.\nExisting Bindings remains, but are inactive. The Role can be undeleted\nwithin 7 days. After 7 days the Role is deleted and all Bindings associated\nwith the role are removed.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_roles_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_roles_get": {
+            "main": "./lib/actions/iam_roles_get.js",
+            "title": "Gets a Role definition.",
+            "description": "Gets a Role definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_roles_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_roles_patch": {
+            "main": "./lib/actions/iam_projects_roles_patch.js",
+            "title": "Updates a Role definition.",
+            "description": "Updates a Role definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_roles_patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_update": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_update.js",
+            "title": "Note: This method is in the process of being deprecated. Use\nPatchServiceAccount instead.\n\nUpdates a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` .\nThe `etag` is mandatory.",
+            "description": "Note: This method is in the process of being deprecated. Use\nPatchServiceAccount instead.\n\nUpdates a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` .\nThe `etag` is mandatory.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_keys_list": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_keys_list.js",
+            "title": "Lists ServiceAccountKeys.",
+            "description": "Lists ServiceAccountKeys.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_keys_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_keys_create": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_keys_create.js",
+            "title": "Creates a ServiceAccountKey\nand returns it.",
+            "description": "Creates a ServiceAccountKey\nand returns it.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_keys_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_list": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_list.js",
+            "title": "Lists ServiceAccounts for a project.",
+            "description": "Lists ServiceAccounts for a project.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_create": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_create.js",
+            "title": "Creates a ServiceAccount\nand returns it.",
+            "description": "Creates a ServiceAccount\nand returns it.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_signBlob": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_signBlob.js",
+            "title": "**Note**: This method is in the process of being deprecated. Call the\n[`signBlob()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob)\nmethod of the Cloud IAM Service Account Credentials API instead.\n\nSigns a blob using a service account's system-managed private key.",
+            "description": "**Note**: This method is in the process of being deprecated. Call the\n[`signBlob()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob)\nmethod of the Cloud IAM Service Account Credentials API instead.\n\nSigns a blob using a service account's system-managed private key.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_signBlob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_signJwt": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_signJwt.js",
+            "title": "**Note**: This method is in the process of being deprecated. Call the\n[`signJwt()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signJwt)\nmethod of the Cloud IAM Service Account Credentials API instead.\n\nSigns a JWT using a service account's system-managed private key.\n\nIf no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an\nan expiry time of one hour by default. If you request an expiry time of\nmore than one hour, the request will fail.",
+            "description": "**Note**: This method is in the process of being deprecated. Call the\n[`signJwt()`](/iam/credentials/reference/rest/v1/projects.serviceAccounts/signJwt)\nmethod of the Cloud IAM Service Account Credentials API instead.\n\nSigns a JWT using a service account's system-managed private key.\n\nIf no expiry time (`exp`) is provided in the `SignJwtRequest`, IAM sets an\nan expiry time of one hour by default. If you request an expiry time of\nmore than one hour, the request will fail.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_signJwt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_roles_undelete": {
+            "main": "./lib/actions/iam_projects_roles_undelete.js",
+            "title": "Undelete a Role, bringing it back in its previous state.",
+            "description": "Undelete a Role, bringing it back in its previous state.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_roles_undelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_roles_list": {
+            "main": "./lib/actions/iam_projects_roles_list.js",
+            "title": "Lists the Roles defined on a resource.",
+            "description": "Lists the Roles defined on a resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_roles_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_roles_create": {
+            "main": "./lib/actions/iam_projects_roles_create.js",
+            "title": "Creates a new Role.",
+            "description": "Creates a new Role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_roles_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_getIamPolicy": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_getIamPolicy.js",
+            "title": "Returns the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. It returns the Cloud\nIAM policy that reflects what members have access to the service account.\n\nThis method does not return what resources the service account has access\nto. To see if a service account has access to a resource, call the\n`getIamPolicy` method on the target resource. For example, to view grants\nfor a project, call the\n[projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy)\nmethod.",
+            "description": "Returns the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. It returns the Cloud\nIAM policy that reflects what members have access to the service account.\n\nThis method does not return what resources the service account has access\nto. To see if a service account has access to a resource, call the\n`getIamPolicy` method on the target resource. For example, to view grants\nfor a project, call the\n[projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy)\nmethod.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_getIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_setIamPolicy": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_setIamPolicy.js",
+            "title": "Sets the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. Use it to grant\nmembers access to the service account, such as when they need to\nimpersonate it.\n\nThis method does not grant the service account access to other resources,\nsuch as projects. To grant a service account access to resources, include\nthe service account in the Cloud IAM policy for the desired resource, then\ncall the appropriate `setIamPolicy` method on the target resource. For\nexample, to grant a service account access to a project, call the\n[projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy)\nmethod.",
+            "description": "Sets the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. Use it to grant\nmembers access to the service account, such as when they need to\nimpersonate it.\n\nThis method does not grant the service account access to other resources,\nsuch as projects. To grant a service account access to resources, include\nthe service account in the Cloud IAM policy for the desired resource, then\ncall the appropriate `setIamPolicy` method on the target resource. For\nexample, to grant a service account access to a project, call the\n[projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy)\nmethod.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_setIamPolicy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iam_projects_serviceAccounts_testIamPermissions": {
+            "main": "./lib/actions/iam_projects_serviceAccounts_testIamPermissions.js",
+            "title": "Tests the specified permissions against the IAM access control policy\nfor a ServiceAccount.",
+            "description": "Tests the specified permissions against the IAM access control policy\nfor a ServiceAccount.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iam_projects_serviceAccounts_testIamPermissions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
